@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Clima</string>
+    <string name="txt_grados">25°</string>
+    <string name="txt_ciudad">Ciudad seleccionada</string>
+    <string name="txt_estatus">Estado del clima</string>
+
+    <string name="txt_welcome">Bienvenido a mi app de clima, para ver el clima de una ciudad seleciona la opción de abajo.</string>
+    <string name="btn_boton">Clima de la ciudad</string>
+</resources>
