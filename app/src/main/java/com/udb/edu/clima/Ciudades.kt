@@ -18,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_ciudades.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
@@ -68,7 +69,7 @@ class Ciudades : AppCompatActivity() {
         //
         tbVolley.setOnClickListener {
             if (Network.hayRed(this)) {
-                solicitudHTTPVolley("http://www.udb.edu.sv/udb/noticias/api/last")
+                solicitudHTTPVolley("https://reqres.in/api/users?page=2")
             } else {
                 tvWelcome.text = "No hay una conexion a internet"
                 Toast.makeText(this, "No hay una conexion a internet", Toast.LENGTH_SHORT).show()
@@ -109,6 +110,15 @@ class Ciudades : AppCompatActivity() {
             response ->
             try {
                 Log.d("solicitudHTTPVolley", response)
+
+                val json = JSONObject(response)
+                val datos = json.getJSONArray ("data")
+                for ( i in 0..datos.length() - 1 ) {
+                    val name = datos.getJSONObject(i).getString("first_name")
+                    Log.d("dataCandidato", name)
+                }
+
+
             } catch ( e: Exception) {
 
             }
