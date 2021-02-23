@@ -29,6 +29,8 @@ class Ciudades : AppCompatActivity() {
 
     val TAG = "com.udb.edu.clima.ciudades.CIUDADES"
 
+    var listaPersonas:ArrayList<Persona>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ciudades)
@@ -113,9 +115,15 @@ class Ciudades : AppCompatActivity() {
 
                 val json = JSONObject(response)
                 val datos = json.getJSONArray ("data")
+                listaPersonas = ArrayList()
                 for ( i in 0..datos.length() - 1 ) {
-                    val name = datos.getJSONObject(i).getString("first_name")
-                    Log.d("dataCandidato", name)
+                    val fname = datos.getJSONObject(i).getString("first_name")
+                    val lname = datos.getJSONObject(i).getString("last_name")
+                    val email = datos.getJSONObject(i).getString("email")
+                    val avatar = datos.getJSONObject(i).getString("avatar")
+
+                    listaPersonas?.add(Persona(fname,lname,email,avatar))
+
                 }
 
 
