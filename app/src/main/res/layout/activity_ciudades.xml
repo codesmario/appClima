@@ -14,20 +14,13 @@
             android:layout_height="wrap_content" android:id="@+id/tvWelcome" android:layout_margin="16dp"
             android:textColor="@color/clc_ciudad"/>
     <Button
-            android:text="@string/btn_boton"
+            android:text="Clima Soyapango"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/bSoyapango"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
     <Button
-            android:text="Validar red"
+            android:text="Clima San Salvador"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/btnValidarCon"/>
-    <Button
-            android:text="HTTP REQUEST"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/btnRequest"/>
-    <Button
-            android:text="Volley"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/bVolley"/>
+            android:layout_height="wrap_content" android:id="@+id/bSanSalvador"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
 </LinearLayout>

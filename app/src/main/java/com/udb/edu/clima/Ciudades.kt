@@ -36,47 +36,20 @@ class Ciudades : AppCompatActivity() {
         setContentView(R.layout.activity_ciudades)
 
         val bSoya = findViewById<Button>(R.id.bSoyapango)
-        var validar = findViewById<Button>(R.id.btnValidarCon)
-        var tvWelcome = findViewById<TextView>(R.id.tvWelcome)
-        var tbVolley = findViewById<Button>(R.id.bVolley)
-
-        var btnRequest =  findViewById<Button>(R.id.btnRequest)
-
-        validar.setOnClickListener {
-            Toast.makeText(this,"En listener",Toast.LENGTH_SHORT)
-
-            if (Network.hayRed(this)) {
-                tvWelcome.text = "Hay conexión"
-            } else {
-                tvWelcome.text = "No hay conexión"
-            }
-        }
+        val bSanS = findViewById<Button>(R.id.bSanSalvador)
 
         bSoya.setOnClickListener(View.OnClickListener {
-            // Toast.makeText(this,"Ciudad de Soyapango",Toast.LENGTH_SHORT)
-
             val intent = Intent(this,MainActivity::class.java)
             intent.putExtra(TAG,"ciudad-soyapango")
             startActivity(intent)
-
-
         })
 
-        btnRequest.setOnClickListener {
-            if (Network.hayRed(this)){
-                Log.d("bSolicitudOnClic", getDownloadData("www.facebook.com"))
-            }
-        }
+        bSanSalvador.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            intent.putExtra(TAG,"ciudad-sansalvador")
+            startActivity(intent)
+        })
 
-        //
-        tbVolley.setOnClickListener {
-            if (Network.hayRed(this)) {
-                solicitudHTTPVolley("https://reqres.in/api/users?page=2")
-            } else {
-                tvWelcome.text = "No hay una conexion a internet"
-                Toast.makeText(this, "No hay una conexion a internet", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     }
     //  ./ onCreate
@@ -106,31 +79,5 @@ class Ciudades : AppCompatActivity() {
     }
     // ./ getDownloadData
 
-    private fun solicitudHTTPVolley(url:String) {
-        val queue = Volley.newRequestQueue(this)
-        val solicitud = StringRequest(Request.Method.GET , url, {
-            response ->
-            try {
-                Log.d("solicitudHTTPVolley", response)
 
-                val json = JSONObject(response)
-                val datos = json.getJSONArray ("data")
-                listaPersonas = ArrayList()
-                for ( i in 0..datos.length() - 1 ) {
-                    val fname = datos.getJSONObject(i).getString("first_name")
-                    val lname = datos.getJSONObject(i).getString("last_name")
-                    val email = datos.getJSONObject(i).getString("email")
-                    val avatar = datos.getJSONObject(i).getString("avatar")
-
-                    listaPersonas?.add(Persona(fname,lname,email,avatar))
-
-                }
-
-
-            } catch ( e: Exception) {
-
-            }
-        }, {  })
-        queue.add(solicitud)
-    }
 }
